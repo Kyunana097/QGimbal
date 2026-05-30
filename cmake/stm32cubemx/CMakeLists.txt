@@ -10,67 +10,67 @@ set(MX_Defines_Syms
 
 # STM32CubeMX generated include paths
 set(MX_Include_Dirs
-    ${CMAKE_SOURCE_DIR}/Core/Inc
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/include
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/CMSIS/Device/ST/STM32F4xx/Include
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/CMSIS/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Inc
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/include
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/CMSIS/Include
 )
 
 # STM32CubeMX generated application sources
 set(MX_Application_Src
-    ${CMAKE_SOURCE_DIR}/Core/Src/main.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/gpio.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/freertos.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/can.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/dma.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/spi.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/usart.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_it.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
-    ${CMAKE_SOURCE_DIR}/startup_stm32f407xx.s
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/main.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/gpio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/freertos.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/can.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/dma.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/spi.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/usart.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32f4xx_it.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/stm32f4xx_hal_msp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/sysmem.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/syscalls.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../startup_stm32f407xx.s
 )
 
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
-    ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Src/system_stm32f4xx.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
 )
 
 # Drivers Midllewares
 
 
 set(FreeRTOS_Src
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/croutine.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/list.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/queue.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/tasks.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/timers.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
-    C:/Users/26757/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/croutine.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/list.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/queue.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/timers.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+    C:/Users/62705/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.3/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
 )
 
 # Link directories setup
@@ -80,6 +80,7 @@ set(MX_LINK_DIRS
 # Project static libraries
 set(MX_LINK_LIBS 
     STM32_Drivers
+    ${TOOLCHAIN_LINK_LIBRARIES}
     FreeRTOS	
 )
 # Interface library for includes and symbols
