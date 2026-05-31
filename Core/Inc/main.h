@@ -51,14 +51,17 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+void MX_TIM1_Init(void);
 
 /* USER CODE BEGIN EFP */
-
+extern TIM_HandleTypeDef htim1;
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
 #define Laser_En_Pin GPIO_PIN_8
 #define Laser_En_GPIO_Port GPIOC
+#define LaserPWM_Pin GPIO_PIN_9
+#define LaserPWM_GPIO_Port GPIOE
 #define CS1_ACCEL_Pin GPIO_PIN_4
 #define CS1_ACCEL_GPIO_Port GPIOA
 #define INT1_ACCEL_Pin GPIO_PIN_4

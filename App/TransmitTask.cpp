@@ -44,7 +44,7 @@ uint8_t UART6_RxBuffer[sizeof(ReceivePackage)];
 void StartTransmitTask(void *argument) {
     while (true) {
         while (ulTaskNotifyTake(pdTRUE, portMAX_DELAY) != pdPASS) {}
-        transmit_package.laser_enabled = HAL_GPIO_ReadPin(Laser_En_GPIO_Port, Laser_En_Pin);
+        transmit_package.laser_enabled = (__HAL_TIM_GET_COMPARE(&htim1, TIM_CHANNEL_1) > 0) ? 1 : 0;
         transmit_package.enabled = gimbal.enabled;
         transmit_package.stability_enabled = gimbal.stability_enabled;
         transmit_package.imu_angles[0] = INS_angle[0];
@@ -77,8 +77,8 @@ void StartReceiveTask(void *argument) {
         }
         if (checksum == reinterpret_cast<ReceivePackage *>(UART6_RxBuffer)->check_sum) {
             if (receive_package.laser_enabled == 0 || receive_package.laser_enabled == 1)
-                HAL_GPIO_WritePin(Laser_En_GPIO_Port, Laser_En_Pin,
-                                  receive_package.laser_enabled ? GPIO_PIN_SET : GPIO_PIN_RESET);
+                __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1,
+                                      receive_package.laser_enabled ? 999 : 0);
             if (receive_package.enabled == 0 || receive_package.enabled == 1) {
                 receive_package.enabled ? gimbal.enable() : gimbal.disable();
             }

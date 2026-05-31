@@ -80,5 +80,26 @@ void HAL_MspInit(void)
 }
 
 /* USER CODE BEGIN 1 */
+void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim) {
+    if (htim->Instance == TIM1) {
+        __HAL_RCC_TIM1_CLK_ENABLE();
+        __HAL_RCC_GPIOE_CLK_ENABLE();
 
+        /* PE9 -> TIM1_CH1 (AF1) */
+        GPIO_InitTypeDef GPIO_InitStruct = {0};
+        GPIO_InitStruct.Pin = GPIO_PIN_9;
+        GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+        GPIO_InitStruct.Pull = GPIO_NOPULL;
+        GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+        GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
+        HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+    }
+}
+
+void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef *htim) {
+    if (htim->Instance == TIM1) {
+        __HAL_RCC_TIM1_CLK_DISABLE();
+        HAL_GPIO_DeInit(GPIOE, GPIO_PIN_9);
+    }
+}
 /* USER CODE END 1 */

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cube-cmake --build build/Debug)",
+      "Bash(cmake --build build/Debug)"
+    ]
+  }
+}

@@ -97,7 +97,7 @@ int main(void)
   MX_CAN1_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  MX_TIM1_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -167,7 +167,31 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+TIM_HandleTypeDef htim1;
 
+void MX_TIM1_Init(void) {
+    TIM_OC_InitTypeDef sConfigOC = {0};
+
+    htim1.Instance = TIM1;
+    htim1.Init.Prescaler = 167;                // 168MHz / 168 = 1MHz
+    htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim1.Init.Period = 999;                   // 1MHz / 1000 = 1kHz PWM
+    htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    htim1.Init.RepetitionCounter = 0;
+    htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+    HAL_TIM_PWM_Init(&htim1);
+
+    sConfigOC.OCMode = TIM_OCMODE_PWM1;
+    sConfigOC.Pulse = 0;                       // start with 0% duty
+    sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+    sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+    sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+    sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+    sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+    HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1);
+
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+}
 /* USER CODE END 4 */
 
 /**

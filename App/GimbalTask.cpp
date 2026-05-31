@@ -59,7 +59,8 @@ void StartGimbalTask(void *argument) {
     // 等待陀螺仪初始化完成
     osDelay(pdMS_TO_TICKS(2000));
 
-    HAL_GPIO_WritePin(Laser_En_GPIO_Port,Laser_En_Pin, GPIO_PIN_SET); // 使能激光
+    // PWM控制激光: PE9 TIM1_CH1, 占空比100% = 激光全亮
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 999);
     gimbal.enable();
     osDelay(50);
     gimbal.enable_stability();
