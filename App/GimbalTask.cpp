@@ -60,7 +60,7 @@ void StartGimbalTask(void *argument) {
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 999);
     gimbal.enable();
     osDelay(50);
-    gimbal.enable_stability();
+    gimbal.enable_stability(true); // 上电后回到 pitch_center 零点
     while (true) {
         while (ulTaskNotifyTake(pdTRUE, portMAX_DELAY) != pdPASS) {}
         gimbal.Ctrl_ISR(INS_angle[0], INS_angle[1]);

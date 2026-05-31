@@ -43,10 +43,10 @@ public:
         enabled = false;
     }
 
-    void enable_stability() {
+    void enable_stability(const bool return_to_center = false) {
         if (!enabled) return;
         PID_yaw_imu.target = yaw_imu_angle;
-        PID_pitch_imu.target = pitch_imu_angle + pitchMotor.angle;
+        PID_pitch_imu.target = return_to_center ? pitch_center : (pitch_imu_angle + pitchMotor.angle);
         PID_yaw_imu.set_sum_error(0);   // 重置积分防止残留导致电流跳变
         PID_pitch_imu.set_sum_error(0);
         stability_enabled = true;
