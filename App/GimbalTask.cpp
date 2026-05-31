@@ -53,10 +53,7 @@ void StartGimbalTask(void *argument) {
     YawMotor.enable();
     PitchMotor.enable();
 
-    // 上电复位云台角度
-    YawMotor.setAngle(yaw_center);
-    PitchMotor.setAngle(pitch_center);
-    // 等待陀螺仪初始化完成
+    // 等待陀螺仪初始化完成（已去掉 setAngle 避免驱动器内部纯 P 控制振荡）
     osDelay(pdMS_TO_TICKS(2000));
 
     // PWM控制激光: PE9 TIM1_CH1, 占空比100% = 激光全亮

@@ -39,14 +39,12 @@ static void imu_cmd_spi_dma(void);
 
 void get_angle(float quat[4], float *yaw, float *pitch, float *roll);
 
-// TODO: 临时解决方案
 static float wrap(float value, const float min, const float max) {
     value = std::fmod(value - min, max - min);
     return value < 0 ? value + max : value + min;
 }
 
-float yaw_bias = 0.0f;
-float delta_yaw_bias = -4.9e-7f;
+float gyro_bias[3] = {0}; // 上电静止校准的陀螺零偏, 单位: rad/s
 
 extern SPI_HandleTypeDef hspi1;
 
@@ -81,6 +79,23 @@ void InsTask(void *argument) {
         osDelay(100);
     }
 
+    // === 陀螺仪零偏校准（上电静止采集，约0.5秒）===
+    {
+        float gyro[3], accel[3], temp;
+        constexpr int CALIB_SAMPLES = 500;
+        for (int i = 0; i < CALIB_SAMPLES; i++) {
+            BMI088_read(gyro, accel, &temp);
+            gyro_bias[0] += gyro[0];
+            gyro_bias[1] += gyro[1];
+            gyro_bias[2] += gyro[2];
+            osDelay(1);
+        }
+        gyro_bias[0] /= CALIB_SAMPLES;
+        gyro_bias[1] /= CALIB_SAMPLES;
+        gyro_bias[2] /= CALIB_SAMPLES;
+    }
+    // =============================================
+
     MahonyAHRS AHRS{1000};
 
     SPI1_DMA_init();
@@ -106,11 +121,14 @@ void InsTask(void *argument) {
                                          &bmi088_real_data.temp);
         }
 
+        // 减去上电校准的陀螺零偏
+        bmi088_real_data.gyro[0] -= gyro_bias[0];
+        bmi088_real_data.gyro[1] -= gyro_bias[1];
+        bmi088_real_data.gyro[2] -= gyro_bias[2];
+
         AHRS.update(bmi088_real_data.gyro[0], bmi088_real_data.gyro[1], bmi088_real_data.gyro[2],
                     bmi088_real_data.accel[0], bmi088_real_data.accel[1], bmi088_real_data.accel[2]);
         get_angle(AHRS.q.data(), INS_angle, INS_angle + 1, INS_angle + 2);
-        yaw_bias += delta_yaw_bias;
-        INS_angle[0] = wrap(INS_angle[0] - yaw_bias, -std::numbers::pi_v<float>, std::numbers::pi_v<float>);
         xTaskNotifyGive((TaskHandle_t)GimbalTaskHandle);
     }
 }

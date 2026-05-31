@@ -47,6 +47,8 @@ public:
         if (!enabled) return;
         PID_yaw_imu.target = yaw_imu_angle;
         PID_pitch_imu.target = pitch_imu_angle + pitchMotor.angle;
+        PID_yaw_imu.set_sum_error(0);   // 重置积分防止残留导致电流跳变
+        PID_pitch_imu.set_sum_error(0);
         stability_enabled = true;
     }
 
@@ -113,6 +115,9 @@ public:
             } else {
                 speed_to_ctrl = PID_pitch_imu.calc(pitch_imu_angle);
             }
+            // 重力前馈补偿: 抵消俯仰轴重力扭矩, 避免积分项持续出力
+            // cos(0°)=1(水平时最大), cos(±90°)=0(竖直时为零)
+            speed_to_ctrl += gravity_comp * std::cos(pitch_imu_angle);
             pitchMotor.setCurrent(speed_to_ctrl);
         }
     }
@@ -123,7 +128,8 @@ private:
     PID PID_yaw_imu;
     PID PID_pitch_imu;
 
-    static constexpr float pitch_max = 0.5f; // pitch轴最大仰角限制,单位:rad
+    static constexpr float pitch_max = 0.5f;    // pitch轴最大仰角限制,单位:rad
+    static constexpr float gravity_comp = 1.0f;  // 重力前馈补偿,单位:A (pitch轴物理需求~0.27Nm)
 
     float Ts;
     float target_yaw_speed{0};   // in rpm
