@@ -42,6 +42,7 @@ extern QD4310 PitchMotor;  // 云台俯仰电机
 uint8_t UART6_RxBuffer[sizeof(ReceivePackage)];
 
 void StartTransmitTask(void *argument) {
+    (void)argument;
     while (true) {
         while (ulTaskNotifyTake(pdTRUE, portMAX_DELAY) != pdPASS) {}
         transmit_package.laser_enabled = (__HAL_TIM_GET_COMPARE(&htim1, TIM_CHANNEL_1) > 0) ? 1 : 0;
@@ -65,6 +66,7 @@ void StartTransmitTask(void *argument) {
 }
 
 void StartReceiveTask(void *argument) {
+    (void)argument;
     receive_package_queue = xQueueCreate(5, sizeof(ReceivePackage));
     ReceivePackage receive_package{};
     HAL_UARTEx_ReceiveToIdle_DMA(&huart6, UART6_RxBuffer, sizeof(ReceivePackage));

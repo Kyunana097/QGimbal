@@ -158,6 +158,7 @@ void MX_FREERTOS_Init(void) {
 __weak void StartDebugTask(void *argument)
 {
   /* USER CODE BEGIN StartDebugTask */
+  (void)argument;
   /* Infinite loop */
   for(;;)
   {

@@ -49,6 +49,7 @@ PID vision_y_pid{
 void CAN_InterfaceInit();
 
 void StartGimbalTask(void *argument) {
+    (void)argument;
     CAN_InterfaceInit();
     YawMotor.enable();
     PitchMotor.enable();

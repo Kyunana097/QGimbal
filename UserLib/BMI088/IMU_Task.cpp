@@ -73,6 +73,7 @@ float INS_angle[3]; //euler angle, unit rad.
   * @retval         none
   */
 void InsTask(void *argument) {
+    (void)argument;
     osDelay(InsTask_INIT_TIME);
 
     while (BMI088_init()) {
