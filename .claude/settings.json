@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(cube-cmake --build build/Debug)",
-      "Bash(cmake --build build/Debug)"
+      "Bash(cmake --build build/Debug)",
+      "Bash(ls -la \"/c/Users/62705/Desktop/QGimbal-Vision/\" 2>/dev/null || echo \"DIR_NOT_FOUND\")",
+      "Read(//c/Users/62705/Desktop/QGimbal-Vision//**)",
+      "Bash(mkdir -p \"/c/Users/62705/Desktop/QGimbal-Vision/tools\")",
+      "Bash(git add *)",
+      "Bash(git commit -m 'fix: pitch轴重力前馈 + 陀螺零偏校准 + 去除启动振荡 *)",
+      "Bash(git commit *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\62705\\Desktop\\QGimbal-Vision"
     ]
   }
 }

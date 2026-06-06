@@ -70,12 +70,12 @@ void StartReceiveTask(void *argument) {
     HAL_UARTEx_ReceiveToIdle_DMA(&huart6, UART6_RxBuffer, sizeof(ReceivePackage));
     while (true) {
         xQueueReceive(receive_package_queue, &receive_package, portMAX_DELAY);
-        // 校验和
+        // 校验和 — 必须在 queued 数据上计算（UART6_RxBuffer 已被 ISR 清零）
         uint8_t checksum = 0;
         for (size_t i = 0; i < sizeof(ReceivePackage) - sizeof(uint8_t); ++i) {
-            checksum += UART6_RxBuffer[i];
+            checksum += reinterpret_cast<const uint8_t *>(&receive_package)[i];
         }
-        if (checksum == reinterpret_cast<ReceivePackage *>(UART6_RxBuffer)->check_sum) {
+        if (checksum == receive_package.check_sum) {
             if (receive_package.laser_enabled == 0 || receive_package.laser_enabled == 1)
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1,
                                       receive_package.laser_enabled ? 999 : 0);
@@ -100,7 +100,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
             if (xHigherPriorityTaskWoken) {
                 taskYIELD();
             }
-            std::fill_n(UART6_RxBuffer, sizeof(UART6_RxBuffer), 0);
         }
         HAL_UARTEx_ReceiveToIdle_DMA(&huart6, UART6_RxBuffer, sizeof(ReceivePackage));
     }
