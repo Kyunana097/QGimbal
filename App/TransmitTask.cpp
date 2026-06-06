@@ -39,7 +39,7 @@ extern Gimbal gimbal;      // 云台
 extern QD4310 YawMotor;    // 云台偏航电机
 extern QD4310 PitchMotor;  // 云台俯仰电机
 
-uint8_t UART6_RxBuffer[sizeof(ReceivePackage)];
+volatile uint8_t UART6_RxBuffer[sizeof(ReceivePackage)]; // volatile: DMA异步访问,防止编译器优化
 
 void StartTransmitTask(void *argument) {
     while (true) {
@@ -67,7 +67,7 @@ void StartTransmitTask(void *argument) {
 void StartReceiveTask(void *argument) {
     receive_package_queue = xQueueCreate(5, sizeof(ReceivePackage));
     ReceivePackage receive_package{};
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart6, UART6_RxBuffer, sizeof(ReceivePackage));
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart6, (uint8_t *)UART6_RxBuffer, sizeof(ReceivePackage));
     while (true) {
         xQueueReceive(receive_package_queue, &receive_package, portMAX_DELAY);
         // 校验和 — 必须在 queued 数据上计算（UART6_RxBuffer 已被 ISR 清零）
@@ -96,11 +96,11 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
     BaseType_t xHigherPriorityTaskWoken;
     if (huart->Instance == huart6.Instance) {
         if (Size == sizeof(ReceivePackage)) {
-            xQueueSendToBackFromISR(receive_package_queue, UART6_RxBuffer, &xHigherPriorityTaskWoken);
+            xQueueSendToBackFromISR(receive_package_queue, (const void *)UART6_RxBuffer, &xHigherPriorityTaskWoken);
             if (xHigherPriorityTaskWoken) {
                 taskYIELD();
             }
         }
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart6, UART6_RxBuffer, sizeof(ReceivePackage));
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart6, (uint8_t *)UART6_RxBuffer, sizeof(ReceivePackage));
     }
 }
