@@ -81,11 +81,16 @@ void StartReceiveTask(void *argument) {
             if (receive_package.laser_enabled == 0 || receive_package.laser_enabled == 1)
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1,
                                       receive_package.laser_enabled ? 999 : 0);
-            if (receive_package.enabled == 0 || receive_package.enabled == 1) {
-                receive_package.enabled ? gimbal.enable() : gimbal.disable();
+            // 只在状态变化时调用,避免每次发包都重置PID target/积分
+            if (receive_package.enabled == 0 && gimbal.enabled) {
+                gimbal.disable();
+            } else if (receive_package.enabled == 1 && !gimbal.enabled) {
+                gimbal.enable();
             }
-            if (receive_package.stability_enabled == 0 || receive_package.stability_enabled == 1) {
-                receive_package.stability_enabled ? gimbal.enable_stability() : gimbal.disable_stability();
+            if (receive_package.stability_enabled == 0 && gimbal.stability_enabled) {
+                gimbal.disable_stability();
+            } else if (receive_package.stability_enabled == 1 && !gimbal.stability_enabled) {
+                gimbal.enable_stability();
             }
             gimbal.Ctrl(std::clamp(receive_package.yaw_speed, -50.0f, 50.0f),
                         std::clamp(receive_package.pitch_speed, -50.0f, 50.0f));
