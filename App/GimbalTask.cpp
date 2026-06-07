@@ -27,7 +27,7 @@ Gimbal gimbal(
     },
     PID{
         PID::PID_type::position_type,
-        4.6f, 0.17f, 30.0f,
+        4.0f, 0.17f, 55.0f,   // kp 4.6→4.0降增益, kd 30→55增阻尼, 抑制2Hz共振
         1.8f, -1.8f,
         1, -1
     },
