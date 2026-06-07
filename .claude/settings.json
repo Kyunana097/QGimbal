@@ -8,7 +8,8 @@
       "Bash(mkdir -p \"/c/Users/62705/Desktop/QGimbal-Vision/tools\")",
       "Bash(git add *)",
       "Bash(git commit -m 'fix: pitch轴重力前馈 + 陀螺零偏校准 + 去除启动振荡 *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(curl -L -o \"/c/Users/62705/Desktop/audio.m4a\" \"https://upos-sz-mirrorhw.bilivideo.com/ugaxcode/n240826sa18zfzlm8zjodwad1qbwpt9k-192k.m4a?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1780762966&gen=playurlv2&os=hwbv&oi=3396639661&trid=9a5c21639280495ea250493c33afa20dB&mid=0&platform=pc&og=hw&upsig=70575cc6442dbcc205f66c49205847e5&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&orderid=0,1&logo=00000000\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\62705\\Desktop\\QGimbal-Vision"

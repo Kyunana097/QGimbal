@@ -116,8 +116,8 @@ public:
                 speed_to_ctrl = PID_pitch_imu.calc(pitch_imu_angle);
             }
             // 重力前馈补偿: 抵消俯仰轴重力扭矩, 避免积分项持续出力
-            // cos(0°)=1(水平时最大), cos(±90°)=0(竖直时为零)
-            speed_to_ctrl += gravity_comp * std::cos(pitch_imu_angle);
+            // 正值电流=向下(顺重力), 故取负号以对抗重力
+            speed_to_ctrl -= gravity_comp * std::cos(pitch_imu_angle);
             pitchMotor.setCurrent(speed_to_ctrl);
         }
     }

@@ -21,7 +21,7 @@ Gimbal gimbal(
     yaw_center, pitch_center,
     PID{
         PID::PID_type::position_type,
-        5.0f, 0.1f, 110.0f,
+        5.0f, 0.1f, 80.0f,    // kd 110→80, 降低D项尖峰减少卡顿
         1.8f, -1.8f,
         1, -1
     },
